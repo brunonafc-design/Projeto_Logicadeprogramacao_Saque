@@ -39,43 +39,48 @@ int main()
             break;
         case 2:
             printf("\n--- ABASTECER ATM ---\n");
+            do{
             printf("\nDigite a quantidade de notas de R$10: ");
             scanf("%d", &dinheirodepositado);
             if (dinheirodepositado < 0)
             {
                 printf("\nQuantidade inválida. Não é possível depositar notas negativas.\n");
-                break;
             }
+            }while(dinheirodepositado < 0);
+
             notas[3] = notas[3] + dinheirodepositado;
 
             /*Solicita a quantidade de notas de R$20*/
+            do{
             printf("\nDigite a quantidade de notas de R$20: ");
             scanf("%d", &dinheirodepositado);
             if (dinheirodepositado < 0)
             {
                 printf("\nQuantidade inválida. Não é possível depositar notas negativas.\n");
-                break;
             }
+            }while(dinheirodepositado < 0);
             notas[2] = notas[2] + dinheirodepositado;
 
             /*Solicita a quantidade de notas de R$50*/
+            do{
             printf("\nDigite a quantidade de notas de R$50: ");
             scanf("%d", &dinheirodepositado);
             if (dinheirodepositado < 0)
             {
                 printf("\nQuantidade inválida. Não é possível depositar notas negativas.\n");
-                break;
             }
+            }while(dinheirodepositado < 0);
             notas[1] = notas[1] + dinheirodepositado;
 
             /*Solicita a quantidade de notas de R$100*/
+            do{
             printf("\nDigite a quantidade de notas de R$100: ");
             scanf("%d", &dinheirodepositado);
             if (dinheirodepositado < 0)
             {
                 printf("\nQuantidade inválida. Não é possível depositar notas negativas.\n");
-                break;
             }
+            }while(dinheirodepositado < 0);
             notas[0] = notas[0] + dinheirodepositado;
 
             break;
@@ -141,6 +146,7 @@ int main()
             break;
         }
     } while (opcao != 0);
+
     printf("\nObrigado por utilizar o simulador de saque!\n");
     return 0;
 }
