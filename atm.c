@@ -1,16 +1,26 @@
 #include <stdio.h>
 #include <time.h>
 
+
 int main()
 {
     /*Notas foi criado um vetor para qtd de notas por valores*/
     int valores[4] = {100, 50, 20, 10};
     int notas[4] = {0, 0, 0, 0};
     int usadas[4] = {0, 0, 0, 0};
+    int depositado [4] = {0,0,0,0};
     int opcao;
     int valorsaque;
     int saque;
     int dinheirodepositado = 0;
+
+    time_t agora;
+    struct tm *data;
+    
+
+   
+
+    
 
     /*O comando do-while em C é uma estrutura de repetição que
     executa um bloco de código pelo menos uma vez antes de testar
@@ -37,11 +47,15 @@ int main()
             printf("\nQuantidade de notas disponiveis de R$%d: %d\n", valores[1], notas[1]);
             printf("\nQuantidade de notas disponiveis de R$%d: %d\n", valores[0], notas[0]);
             break;
+
+            
         case 2:
             printf("\n--- ABASTECER ATM ---\n");
             do{
             printf("\nDigite a quantidade de notas de R$10: ");
             scanf("%d", &dinheirodepositado);
+            depositado[3] = dinheirodepositado;
+
             if (dinheirodepositado < 0)
             {
                 printf("\nQuantidade inválida. Não é possível depositar notas negativas.\n");
@@ -59,6 +73,7 @@ int main()
                 printf("\nQuantidade inválida. Não é possível depositar notas negativas.\n");
             }
             }while(dinheirodepositado < 0);
+            depositado[2] = dinheirodepositado;
             notas[2] = notas[2] + dinheirodepositado;
 
             /*Solicita a quantidade de notas de R$50*/
@@ -70,6 +85,7 @@ int main()
                 printf("\nQuantidade inválida. Não é possível depositar notas negativas.\n");
             }
             }while(dinheirodepositado < 0);
+            depositado[1] = dinheirodepositado;
             notas[1] = notas[1] + dinheirodepositado;
 
             /*Solicita a quantidade de notas de R$100*/
@@ -81,9 +97,25 @@ int main()
                 printf("\nQuantidade inválida. Não é possível depositar notas negativas.\n");
             }
             }while(dinheirodepositado < 0);
+            depositado[0] = dinheirodepositado;
             notas[0] = notas[0] + dinheirodepositado;
+            
+
+            printf("\n ____ESTRATO DE DEPOSITO____");
+            printf("\nFoi depositado, %d notas de R$%d", depositado[3], valores[3]);
+            printf("\nFoi depositado, %d notas de R$%d", depositado[2], valores[2]);
+            printf("\nFoi depositado, %d notas de R$%d", depositado[1], valores[1]);
+            printf("\nFoi depositado, %d notas de R$%d", depositado[0], valores[0]);
+
+            time(&agora);
+            
+            data = localtime(&agora);
+            printf("\nData:%d/%d/%d",data->tm_mday , data->tm_mon + 1,data->tm_year + 1900);
+            printf("\nHora:%d:%d:%d",data->tm_hour , data->tm_min,data->tm_sec);
+
 
             break;
+            
         case 3:
             printf("\nDigite o valor do saque: ");
             scanf("%d", &valorsaque);
@@ -130,6 +162,13 @@ int main()
                     /* Atualiza o caixa */
                     notas[i] -= usadas[i];
                 }
+
+            time(&agora);
+            
+            data = localtime(&agora);
+            printf("\nData:%d/%d/%d",data->tm_mday , data->tm_mon + 1,data->tm_year + 1900);
+            printf("\nHora:%d:%d:%d",data->tm_hour , data->tm_min,data->tm_sec);
+            
             }
             else
             {
